@@ -22,12 +22,13 @@
         #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar el contenido de este método con el editor de código.
+        /// Método necesario para admitir el Diseñador. No se puede modificar el texto de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IniciarSesion));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxTerminosYCondiciones = new System.Windows.Forms.TextBox();
             this.LabelRegistrarse = new System.Windows.Forms.Label();
             this.BotonRegistrarse = new System.Windows.Forms.Button();
             this.BotonIniciarSesion = new System.Windows.Forms.Button();
@@ -36,12 +37,15 @@
             this.LabelContraseñaInicio = new System.Windows.Forms.Label();
             this.LabelCorreoInicio = new System.Windows.Forms.Label();
             this.Label_Inicio_Sesion = new System.Windows.Forms.Label();
-            this.textBoxTerminosYCondiciones = new System.Windows.Forms.TextBox();
+            this.btnAdmin = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnAdmin);
             this.panel1.Controls.Add(this.textBoxTerminosYCondiciones);
             this.panel1.Controls.Add(this.LabelRegistrarse);
             this.panel1.Controls.Add(this.BotonRegistrarse);
@@ -53,13 +57,24 @@
             this.panel1.Controls.Add(this.Label_Inicio_Sesion);
             this.panel1.Location = new System.Drawing.Point(3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(278, 403);
+            this.panel1.Size = new System.Drawing.Size(294, 426);
             this.panel1.TabIndex = 0;
+            // 
+            // textBoxTerminosYCondiciones
+            // 
+            this.textBoxTerminosYCondiciones.Location = new System.Drawing.Point(9, 225);
+            this.textBoxTerminosYCondiciones.Multiline = true;
+            this.textBoxTerminosYCondiciones.Name = "textBoxTerminosYCondiciones";
+            this.textBoxTerminosYCondiciones.ReadOnly = true;
+            this.textBoxTerminosYCondiciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxTerminosYCondiciones.Size = new System.Drawing.Size(271, 185);
+            this.textBoxTerminosYCondiciones.TabIndex = 16;
+            this.textBoxTerminosYCondiciones.Text = resources.GetString("textBoxTerminosYCondiciones.Text");
             // 
             // LabelRegistrarse
             // 
             this.LabelRegistrarse.AutoSize = true;
-            this.LabelRegistrarse.Location = new System.Drawing.Point(45, 184);
+            this.LabelRegistrarse.Location = new System.Drawing.Point(14, 177);
             this.LabelRegistrarse.Name = "LabelRegistrarse";
             this.LabelRegistrarse.Size = new System.Drawing.Size(100, 13);
             this.LabelRegistrarse.TabIndex = 7;
@@ -67,7 +82,7 @@
             // 
             // BotonRegistrarse
             // 
-            this.BotonRegistrarse.Location = new System.Drawing.Point(151, 174);
+            this.BotonRegistrarse.Location = new System.Drawing.Point(120, 167);
             this.BotonRegistrarse.Name = "BotonRegistrarse";
             this.BotonRegistrarse.Size = new System.Drawing.Size(75, 23);
             this.BotonRegistrarse.TabIndex = 6;
@@ -128,24 +143,31 @@
             this.Label_Inicio_Sesion.TabIndex = 0;
             this.Label_Inicio_Sesion.Text = "Inicio de Sesión";
             // 
-            // textBoxTerminosYCondiciones
+            // btnAdmin
             // 
-            this.textBoxTerminosYCondiciones.Location = new System.Drawing.Point(9, 212);
-            this.textBoxTerminosYCondiciones.Multiline = true;
-            this.textBoxTerminosYCondiciones.Name = "textBoxTerminosYCondiciones";
-            this.textBoxTerminosYCondiciones.ReadOnly = true;
-            this.textBoxTerminosYCondiciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxTerminosYCondiciones.Size = new System.Drawing.Size(263, 185);
-            this.textBoxTerminosYCondiciones.TabIndex = 16;
-            this.textBoxTerminosYCondiciones.Text = resources.GetString("textBoxTerminosYCondiciones.Text");
+            this.btnAdmin.Location = new System.Drawing.Point(105, 196);
+            this.btnAdmin.Name = "btnAdmin";
+            this.btnAdmin.Size = new System.Drawing.Size(114, 23);
+            this.btnAdmin.TabIndex = 17;
+            this.btnAdmin.Text = "Iniciar Sesion Admin";
+            this.btnAdmin.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 206);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "¿Eres Admin?";
+            // 
+            // IniciarSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 413);
+            this.ClientSize = new System.Drawing.Size(309, 440);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "IniciarSesion";
             this.Text = "Inicio de Sesión";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -165,5 +187,7 @@
         private System.Windows.Forms.Label LabelCorreoInicio;
         private System.Windows.Forms.Label Label_Inicio_Sesion;
         private System.Windows.Forms.TextBox textBoxTerminosYCondiciones;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAdmin;
     }
 }

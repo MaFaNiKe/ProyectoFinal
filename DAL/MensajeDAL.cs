@@ -121,7 +121,7 @@ namespace DAL
                                 FechaHora = reader.GetDateTime("FECHA_HORA")
                             };
 
-                            // Obtener el contenido adicional
+                            // Obtener el texto adicional
                             mensaje.Texto = ObtenerTextoPorId(mensaje.IdMensaje);
                             mensaje.Imagen = ObtenerImagenPorId(mensaje.IdMensaje);
                             mensaje.Link = ObtenerLinkPorId(mensaje.IdMensaje);
@@ -197,8 +197,8 @@ namespace DAL
             {
                 connection.Open();
 
-                // Primero, elimina el contenido adicional
-                EliminarContenidoPorId(idMensaje);
+                // Primero, elimina el texto adicional
+                EliminartextoPorId(idMensaje);
 
                 // Luego, elimina el mensaje
                 var query = "DELETE FROM MENSAJE WHERE ID_MENSAJE = @IdMensaje";
@@ -210,8 +210,8 @@ namespace DAL
             }
         }
 
-        // Método para eliminar el contenido adicional de un mensaje
-        private void EliminarContenidoPorId(int idMensaje)
+        // Método para eliminar el texto adicional de un mensaje
+        private void EliminartextoPorId(int idMensaje)
         {
             using (var connection = new MySqlConnection(connectionString))
             {
@@ -244,7 +244,7 @@ namespace DAL
                     command.ExecuteNonQuery();
                 }
 
-                // Actualizar contenido según el tipo de mensaje
+                // Actualizar texto según el tipo de mensaje
                 switch (mensaje.Tipo)
                 {
                     case Mensaje.MensajeTipo.Texto:

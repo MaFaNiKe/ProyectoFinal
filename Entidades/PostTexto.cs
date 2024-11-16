@@ -7,7 +7,7 @@ namespace Entidades
     {
         public int IdTexto { get; set; }
         public int IdPost { get; set; }
-        public string ContenidoTexto { get; set; }
+        public string textoTexto { get; set; }
         public DateTime FechaSubida { get; set; }
         public List<string> Comentarios { get; set; } = new List<string>();
 
@@ -20,11 +20,11 @@ namespace Entidades
             FechaSubida = DateTime.Now;
         }
 
-        public PostTexto(int idTexto, int idPost, string contenidoTexto, DateTime fechaSubida)
+        public PostTexto(int idTexto, int idPost, string textoTexto, DateTime fechaSubida)
         {
             IdTexto = idTexto;
             IdPost = idPost;
-            ContenidoTexto = contenidoTexto;
+            textoTexto = textoTexto;
             FechaSubida = fechaSubida;
         }
 
@@ -39,7 +39,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return $"Texto {IdTexto} en Post {IdPost}: {ContenidoTexto} (Fecha de subida: {FechaSubida.ToShortDateString()})";
+            return $"Texto {IdTexto} en Post {IdPost}: {textoTexto} (Fecha de subida: {FechaSubida.ToShortDateString()})";
         }
     }
 }

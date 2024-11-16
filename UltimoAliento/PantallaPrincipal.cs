@@ -1,142 +1,194 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Entidades;
+using DAL;
+using System.Collections.Generic;
 
 namespace UltimoAliento
 {
     public partial class PantallaPrincipal : Form
     {
         public Usuario usuario;
+        private PostDAL postDAL;
+        private LikesDAL likeDAL; 
 
         public PantallaPrincipal(Usuario usuario)
         {
             InitializeComponent();
             this.usuario = usuario;
+            postDAL = new PostDAL();
+            likeDAL = new LikesDAL();
             CargarPublicaciones();
+            CargarAnuncios();
+            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
         }
 
-        private void CargarPublicaciones()
+        public void CargarAnuncios() 
         {
+            try
+            {
+               
+                string videoPath = @"C:\Users\matir\source\repos\UltimoAliento\Anuncios\CocaVagabundaCola.mp4"; // Cambiarla más adelante para una ruta válida del server
 
+                axWindowsMediaPlayer1.URL = videoPath;
+                axWindowsMediaPlayer1.settings.setMode("loop", true); 
+                axWindowsMediaPlayer1.Ctlcontrols.play();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el video: " + ex.Message);
+            }
         }
 
-        private void BotonNuevaPublicacion_Click(object sender, EventArgs e)
+        public void CargarPublicaciones()
         {
-            // Crear un nuevo panel para el post
-            Panel postPanel = new Panel();
-            postPanel.Width = 400;
-            postPanel.Height = 150;
-            postPanel.BorderStyle = BorderStyle.FixedSingle;
+            try
+            {
+                List<Post> postsDesdeDB = postDAL.ObtenerTodosLosPosts();
+                int cantidadPostsEnAplicacion = flowLayoutPanelPosts.Controls.Count;
 
-            // Crear un FlowLayoutPanel interno para organizar el contenido de arriba hacia abajo
-            FlowLayoutPanel contentLayout = new FlowLayoutPanel();
-            contentLayout.FlowDirection = FlowDirection.TopDown;
-            contentLayout.Dock = DockStyle.Fill;
+                foreach (var post in postsDesdeDB.Skip(cantidadPostsEnAplicacion))
+                {
+                    CargarPostEnInterfaz(post);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar las publicaciones: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
-            // Crear el label con el nombre y la fecha
-            Label lblNombreFecha = new Label();
-            lblNombreFecha.Text = "Nombre : " + DateTime.Now.ToString("dd/MM/yyyy HH:mm");
-            lblNombreFecha.AutoSize = true;
+        private void CargarPostEnInterfaz(Post post)
+        {
+            var postPanel = new Panel
+            {
+                Width = 400,
+                Height = 150,
+                BorderStyle = BorderStyle.FixedSingle
+            };
 
-            // Crear otro FlowLayoutPanel para contener el PictureBox y el texto del post
-            FlowLayoutPanel postContentLayout = new FlowLayoutPanel();
-            postContentLayout.FlowDirection = FlowDirection.LeftToRight;
-            postContentLayout.AutoSize = true;
+            var contentLayout = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.TopDown,
+                Dock = DockStyle.Fill
+            };
 
-            // Crear el PictureBox a la izquierda
-            PictureBox pictureBox = new PictureBox();
-            pictureBox.Width = 50;
-            pictureBox.Height = 50;
-            //pictureBox.Image = Image.FromFile("ruta_a_tu_imagen"); // Coloca la ruta correcta de la imagen
-            pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            var lblNombreFecha = new Label
+            {
+                Text = $"Nombre: {post.NombreUsuario}  Fecha: {post.Fecha:dd/MM/yyyy HH:mm}",
+                AutoSize = true
+            };
 
-            // Crear el Label que contendrá el texto del post a la derecha del PictureBox
-            Label lblTextoPost = new Label();
-            lblTextoPost.Text = "Este es el texto del post.";
-            lblTextoPost.AutoSize = true;
-            lblTextoPost.Width = 300; // Puedes ajustar el ancho
+            var postContentLayout = new FlowLayoutPanel
+            {
+                FlowDirection = FlowDirection.LeftToRight,
+                AutoSize = true
+            };
 
-            // Añadir el PictureBox y el Label al FlowLayoutPanel postContentLayout
+            var pictureBox = new PictureBox
+            {
+                Width = 50,
+                Height = 50,
+                SizeMode = PictureBoxSizeMode.StretchImage
+            };
+
+            var lblTextoPost = new Label
+            {
+                Text = post.Texto ?? "Sin texto",
+                AutoSize = true,
+                Width = 300
+            };
+
             postContentLayout.Controls.Add(pictureBox);
             postContentLayout.Controls.Add(lblTextoPost);
 
-            // Crear el botón de "Like"
-            Button btnLike = new Button();
-            btnLike.Text = "Like";
-            btnLike.Tag = 0; // Inicialmente el botón no ha sido presionado
+            var btnLike = new Button
+            {
+                Text = "Like",
+                Tag = likeDAL.PerfilYaDioLike(usuario.IdPerfil, post.IdPerfil) ? 1 : 0
+            };
 
-            // Crear el Label para mostrar la cantidad de likes
-            Label lblLikes = new Label();
-            lblLikes.Text = "Likes: 0";
-            lblLikes.AutoSize = true;
+            var lblLikes = new Label
+            {
+                Text = $"Likes: {likeDAL.ObtenerCantidadLikes(post.IdPost)}",
+                AutoSize = true
+            };
 
-            // Añadir funcionalidad al botón de "Like"
+            if ((int)btnLike.Tag == 1)
+            {
+                btnLike.Enabled = false;
+            }
+
             btnLike.Click += (s, evt) =>
             {
-                if ((int)btnLike.Tag == 0) // Verificamos si ya se ha presionado
+                if ((int)btnLike.Tag == 0) 
                 {
-                    int likesCount = int.Parse(lblLikes.Text.Split(':')[1].Trim());
-                    likesCount++;
-                    lblLikes.Text = "Likes: " + likesCount;
-                    btnLike.Tag = 1; // Marcar el botón como presionado para evitar más clics
-                    btnLike.Enabled = false; // Deshabilitar el botón
+                    
+                    likeDAL.AgregarLike(new Likes(post.IdPost, usuario.IdPerfil));
+
+                    int likesCount = likeDAL.ObtenerCantidadLikes(post.IdPost);
+                    lblLikes.Text = $"Likes: {likesCount}";
+
+                    btnLike.Tag = 1;
+                    btnLike.Enabled = false;
                 }
             };
 
-            // Añadir los controles al contentLayout
             contentLayout.Controls.Add(lblNombreFecha);
             contentLayout.Controls.Add(postContentLayout);
             contentLayout.Controls.Add(btnLike);
             contentLayout.Controls.Add(lblLikes);
 
-            // Añadir el contentLayout al panel
             postPanel.Controls.Add(contentLayout);
-
-            // Añadir el panel al FlowLayoutPanel principal
             flowLayoutPanelPosts.Controls.Add(postPanel);
-            MessageBox.Show("Funcionalidad aún no implementada.");
         }
 
         private void BotonCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Hide();
-            IniciarSesion inicioSesion = new IniciarSesion();
+            var inicioSesion = new IniciarSesion();
             inicioSesion.Show();
         }
 
         private void BotonConfiguracion_Click(object sender, EventArgs e)
         {
-            // Abre una ventana de configuración 
-            MessageBox.Show("Ventana de Configuración (por implementar)");
+            var config = new ConfigForm();
+            config.Show();
         }
 
         private void BotonNotificaciones_Click(object sender, EventArgs e)
         {
-            // Lógica para abrir ventana de notificaciones
-            MessageBox.Show("Ventana de Notificaciones (por implementar)");
+            var notificForm = new NotificacionesForm();
+            notificForm.Show();
         }
 
-        private void perfilMenuItem_Click_1(object sender, EventArgs e)
+        private void perfilMenuItem_Click(object sender, EventArgs e)
         {
-            PerfilForm perfilForm = new PerfilForm(usuario);
+            var perfilForm = new PerfilForm(usuario);
             perfilForm.Show();
         }
 
         private void mensajesMenuItem_Click(object sender, EventArgs e)
         {
-            ChatForm mensajesForm = new ChatForm(usuario); // Suponiendo que necesitas pasar un usuario
-
-            // Mostrar la ventana de mensajes
-            mensajesForm.Show();  // Usa ShowDialog() si quieres que sea modal y bloquee la ventana actual
+            var mensajesForm = new ChatForm(usuario);
+            mensajesForm.Show(); 
         }
 
         private void crearPostToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Crear una instancia de la ventana CrearPost
-            CrearPost crearPostForm = new CrearPost();
-
-            // Mostrar la ventana
+            var crearPostForm = new CrearPost(usuario);
             crearPostForm.Show();
+        }
+
+        private void actualizarToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            CargarPublicaciones();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

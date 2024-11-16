@@ -11,7 +11,7 @@ namespace Entidades
         public string Apellido { get; set; }
         public string Correo { get; set; }
         public string Contrasena { get; set; }
-        public DateTime FechaNac { get; set; }
+        public DateTime FechaNac { get; set; }  // Usa DateTime para almacenar la fecha
         public TipoUsuarioEnum TipoUsuario { get; set; }
 
         // Relaciones
@@ -40,7 +40,7 @@ namespace Entidades
             Apellido = apellido;
             Correo = correo;
             Contrasena = contrasena; // Considera hacer hash aquí
-            FechaNac = fechaNac;
+            FechaNac = fechaNac.Date;  // Asegúrate de usar solo la fecha
             TipoUsuario = tipoUsuario;
         }
 
@@ -59,7 +59,7 @@ namespace Entidades
             Apellido = apellido;
             Correo = correo;
             Contrasena = contrasena; // Considera hacer hash aquí
-            FechaNac = fechaNac;
+            FechaNac = fechaNac.Date;  // Solo la fecha
             TipoUsuario = tipoUsuario;
         }
 
@@ -88,6 +88,7 @@ namespace Entidades
             return emailRegex.IsMatch(correo);
         }
     }
+
     public class UsuarioDTO
     {
         public int IdPerfil { get; set; }

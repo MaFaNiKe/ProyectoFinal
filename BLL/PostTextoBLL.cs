@@ -10,7 +10,7 @@ namespace BLL
 
         public PostTextoBLL()
         {
-            postTextoDAL = new PostTextoDAL(); 
+            postTextoDAL = new PostTextoDAL();
         }
 
         public void AgregarPostTexto(PostTexto postTexto)

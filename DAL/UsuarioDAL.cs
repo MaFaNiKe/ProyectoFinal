@@ -5,6 +5,7 @@ using System.Configuration;
 using Entidades;
 using System.Linq;
 using Newtonsoft.Json; // Necesitamos esta librería para convertir a JSON
+using System.IO;
 
 namespace DAL
 {
@@ -132,8 +133,6 @@ namespace DAL
             return usuario;
         }
 
-
-
         public void ActualizarUsuario(Usuario usuario)
         {
             using (var connection = new MySqlConnection(connectionString))
@@ -228,11 +227,21 @@ namespace DAL
                     }
                 }
             }
-
-            // Convertimos la lista de usuarios a JSON
             string jsonUsuarios = JsonConvert.SerializeObject(usuariosLista, Formatting.Indented);
 
-            return jsonUsuarios; // Devolvemos el JSON resultante
+            string absolutePath = @"C:\Users\matir\source\repos\UltimoAliento\usuarios.json\usuarios.json";
+
+            try
+            {
+                File.WriteAllText(absolutePath, jsonUsuarios);
+                Console.WriteLine("Archivo JSON generado correctamente en la ruta especificada.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al guardar el archivo JSON: {ex.Message}");
+            }
+
+            return jsonUsuarios;
         }
     }
 }

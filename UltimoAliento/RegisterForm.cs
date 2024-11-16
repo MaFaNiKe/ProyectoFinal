@@ -61,6 +61,7 @@ namespace UltimoAliento
             usuarioBLL.AgregarUsuario(nuevoUsuario);
 
             MessageBox.Show("Registro exitoso.");
+            this.Hide();
         }
 
 

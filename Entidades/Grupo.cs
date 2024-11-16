@@ -7,7 +7,7 @@ namespace Entidades
     {
         public int IdGrupo { get; set; }
         public string Nombre { get; set; }
-        public bool ContenidoPublico { get; set; }
+        public bool textoPublico { get; set; }
         public string Comentarios { get; set; }
         public DateTime FechaCreacion { get; set; }
 
@@ -19,11 +19,11 @@ namespace Entidades
         // Constructores
         public Grupo() { }
 
-        public Grupo(int idGrupo, string nombre, bool contenidoPublico, string comentarios, DateTime fechaCreacion, Usuario creador)
+        public Grupo(int idGrupo, string nombre, bool textoPublico, string comentarios, DateTime fechaCreacion, Usuario creador)
         {
             IdGrupo = idGrupo;
             Nombre = nombre;
-            ContenidoPublico = contenidoPublico;
+            textoPublico = textoPublico;
             Comentarios = comentarios;
             FechaCreacion = fechaCreacion;
             Creador = creador;

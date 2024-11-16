@@ -27,5 +27,7 @@ namespace BLL
         {
             return postDAL.ObtenerPostPorId(idPost);
         }
+
+
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using Entidades;
-using System.Configuration; 
+using System.Configuration;
+using System.Collections.Generic;
 
 namespace DAL
 {
@@ -9,10 +10,8 @@ namespace DAL
     {
         private readonly string connectionString;
 
-
         public PostTextoDAL()
         {
-            // cadena de conexión desde App.config
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
@@ -21,11 +20,10 @@ namespace DAL
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                using (var command = new MySqlCommand("INSERT INTO post_texto (id_post, texto) VALUES (@IdPost, @Texto)", connection))
+                using (var command = new MySqlCommand("INSERT INTO post_texto (ID_POST, TEXTO) VALUES (@IdPost, @Texto)", connection))
                 {
                     command.Parameters.AddWithValue("@IdPost", postTexto.IdPost);
-                    command.Parameters.AddWithValue("@Texto", postTexto.ContenidoTexto);
-
+                    command.Parameters.AddWithValue("@Texto", postTexto.textoTexto);
                     command.ExecuteNonQuery();
                 }
             }
@@ -36,7 +34,7 @@ namespace DAL
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                using (var command = new MySqlCommand("DELETE FROM post_texto WHERE id_post = @IdPost", connection))
+                using (var command = new MySqlCommand("DELETE FROM post_texto WHERE ID_POST = @IdPost", connection))
                 {
                     command.Parameters.AddWithValue("@IdPost", idPost);
                     command.ExecuteNonQuery();
@@ -44,30 +42,55 @@ namespace DAL
             }
         }
 
+        // Corrección: Obtener un solo PostTexto por su Id
         public PostTexto ObtenerPostTextoPorId(int idPost)
         {
             using (var connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                using (var command = new MySqlCommand("SELECT * FROM post_texto WHERE id_post = @IdPost", connection))
+                using (var command = new MySqlCommand("SELECT * FROM post_texto WHERE ID_POST = @IdPost", connection))
                 {
                     command.Parameters.AddWithValue("@IdPost", idPost);
                     using (var reader = command.ExecuteReader())
                     {
-                        if (reader.Read())
+                        if (reader.Read()) // Si se encuentra un resultado
                         {
                             return new PostTexto
                             {
-                                IdTexto = reader.GetInt32("id_post"),
-                                IdPost = reader.GetInt32("id_post"),
-                                ContenidoTexto = reader.GetString("texto"),
-                                FechaSubida = reader.GetDateTime("fecha_subida")
+                                IdPost = reader.GetInt32("ID_POST"),
+                                textoTexto = reader.GetString("TEXTO")
                             };
                         }
                     }
                 }
             }
-            return null;
+            return null; // Si no se encuentra el PostTexto
+        }
+
+        public List<PostTexto> ObtenerPostTextosPorIdPost(int idPost)
+        {
+            var postTextos = new List<PostTexto>();
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new MySqlCommand("SELECT * FROM post_texto WHERE ID_POST = @IdPost", connection))
+                {
+                    command.Parameters.AddWithValue("@IdPost", idPost);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var postTexto = new PostTexto
+                            {
+                                IdPost = reader.GetInt32("ID_POST"),
+                                textoTexto = reader.GetString("TEXTO")
+                            };
+                            postTextos.Add(postTexto);
+                        }
+                    }
+                }
+            }
+            return postTextos;
         }
     }
 }

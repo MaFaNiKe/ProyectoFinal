@@ -8,15 +8,21 @@ namespace Entidades
     {
         public int IdPost { get; set; }
         public int IdPerfil { get; set; }
+        public string NombreUsuario { get; set; }
+        public string Texto { get; set; }  // Campo de texto agregado
         public DateTime Fecha { get; set; }
-        public string ContenidoTexto { get; set; }
-        public string ContenidoImagen { get; set; }
-        public string ContenidoLink { get; set; }
+        public int Likes { get; set; }     // Contador de likes agregado
+        public string textoImagen { get; set; }
+        public string textoLink { get; set; }
+
+         List<int> likesUsuarios = new List<int>();// En este list se guardarán los id de los usuarios que han dado like al post
+
+        // Nueva propiedad para almacenar los IDs de usuarios que han dado like
+        public List<int> LikesUsuarios { get; set; } = new List<int>();
 
         // Relaciones
-        public Usuario Usuario { get; set; } 
+        public Usuario Usuario { get; set; }
         public ICollection<PostImagen> PostImagens { get; set; } = new List<PostImagen>();
-        public ICollection<PostTexto> PostTextos { get; set; } = new List<PostTexto>();
         public ICollection<PostLink> PostLinks { get; set; } = new List<PostLink>();
         public ICollection<UpvoteUp> Upvotes { get; set; } = new List<UpvoteUp>();
         public ICollection<Evento> Eventos { get; set; } = new List<Evento>();
@@ -24,22 +30,21 @@ namespace Entidades
         // Constructores
         public Post() { }
 
-        public Post(int idPost, int idPerfil, DateTime fecha, string contenidoTexto, string contenidoImagen, string contenidoLink)
+        public Post(int idPost, int idPerfil, DateTime fecha, string texto, int likes = 0, List<int> likesUsuarios = null)
         {
             IdPost = idPost;
             IdPerfil = idPerfil;
             Fecha = fecha;
-            ContenidoTexto = contenidoTexto;
-            ContenidoImagen = contenidoImagen;
-            ContenidoLink = contenidoLink;
+            Texto = texto;   // Inicializar el texto
+            Likes = likes;   // Inicializar el contador de likes
+            LikesUsuarios = likesUsuarios ?? new List<int>(); // Inicializar la lista de usuarios que dieron like
         }
 
-        // Métodos
+        // Métodos para gestionar relaciones
         public void AgregarImagen(PostImagen imagen)
         {
             if (imagen == null)
                 throw new ArgumentNullException(nameof(imagen));
-
             PostImagens.Add(imagen);
         }
 
@@ -47,31 +52,13 @@ namespace Entidades
         {
             if (imagen == null)
                 throw new ArgumentNullException(nameof(imagen));
-
             PostImagens.Remove(imagen);
-        }
-
-        public void AgregarTexto(PostTexto texto)
-        {
-            if (texto == null)
-                throw new ArgumentNullException(nameof(texto));
-
-            PostTextos.Add(texto);
-        }
-
-        public void EliminarTexto(PostTexto texto)
-        {
-            if (texto == null)
-                throw new ArgumentNullException(nameof(texto));
-
-            PostTextos.Remove(texto);
         }
 
         public void AgregarLink(PostLink link)
         {
             if (link == null)
                 throw new ArgumentNullException(nameof(link));
-
             PostLinks.Add(link);
         }
 
@@ -79,7 +66,6 @@ namespace Entidades
         {
             if (link == null)
                 throw new ArgumentNullException(nameof(link));
-
             PostLinks.Remove(link);
         }
 
@@ -88,7 +74,6 @@ namespace Entidades
             if (upvote == null)
                 throw new ArgumentNullException(nameof(upvote));
 
-            // Verifica si el usuario ya ha dado un upvote a este post
             if (Upvotes.Any(u => u.IdPerfil == upvote.IdPerfil && u.IdPost == upvote.IdPost))
                 throw new InvalidOperationException("El usuario ya ha dado un upvote a este post.");
 
@@ -99,7 +84,6 @@ namespace Entidades
         {
             if (evento == null)
                 throw new ArgumentNullException(nameof(evento));
-
             Eventos.Add(evento);
         }
 
@@ -107,13 +91,12 @@ namespace Entidades
         {
             if (evento == null)
                 throw new ArgumentNullException(nameof(evento));
-
             Eventos.Remove(evento);
         }
 
         public override string ToString()
         {
-            return $"{IdPost} - {ContenidoTexto}";
+            return $"{IdPost} - {Fecha}";
         }
     }
 }

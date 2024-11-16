@@ -15,125 +15,142 @@
 
         private void InitializeComponent()
         {
-            this.lstChats = new System.Windows.Forms.ListBox();
             this.rtbMensajes = new System.Windows.Forms.RichTextBox();
             this.txtMensaje = new System.Windows.Forms.TextBox();
-            this.btnEnviar = new System.Windows.Forms.Button();
             this.btnAdjuntar = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtBoxNuevoChat = new System.Windows.Forms.TextBox();
-            this.btnCrearChat = new System.Windows.Forms.Button();
+            this.dtgChats = new System.Windows.Forms.DataGridView();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnEnviar = new System.Windows.Forms.Button();
+            this.CargarChat = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgChats)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lstChats
-            // 
-            this.lstChats.FormattingEnabled = true;
-            this.lstChats.Location = new System.Drawing.Point(11, 67);
-            this.lstChats.Name = "lstChats";
-            this.lstChats.Size = new System.Drawing.Size(160, 277);
-            this.lstChats.TabIndex = 0;
-            this.lstChats.SelectedIndexChanged += new System.EventHandler(this.lstChats_SelectedIndexChanged);
             // 
             // rtbMensajes
             // 
-            this.rtbMensajes.Location = new System.Drawing.Point(177, 40);
+            this.rtbMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbMensajes.Location = new System.Drawing.Point(182, 3);
             this.rtbMensajes.Name = "rtbMensajes";
             this.rtbMensajes.ReadOnly = true;
-            this.rtbMensajes.Size = new System.Drawing.Size(400, 276);
+            this.rtbMensajes.Size = new System.Drawing.Size(413, 243);
             this.rtbMensajes.TabIndex = 1;
             this.rtbMensajes.Text = "";
             // 
             // txtMensaje
             // 
-            this.txtMensaje.Location = new System.Drawing.Point(237, 324);
+            this.txtMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtMensaje.Location = new System.Drawing.Point(182, 252);
             this.txtMensaje.Name = "txtMensaje";
-            this.txtMensaje.Size = new System.Drawing.Size(259, 20);
+            this.txtMensaje.Size = new System.Drawing.Size(413, 20);
             this.txtMensaje.TabIndex = 2;
-            // 
-            // btnEnviar
-            // 
-            this.btnEnviar.Location = new System.Drawing.Point(502, 322);
-            this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(75, 23);
-            this.btnEnviar.TabIndex = 3;
-            this.btnEnviar.Text = "Enviar";
-            this.btnEnviar.UseVisualStyleBackColor = true;
-            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // btnAdjuntar
             // 
-            this.btnAdjuntar.Location = new System.Drawing.Point(177, 322);
+            this.btnAdjuntar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdjuntar.Location = new System.Drawing.Point(3, 252);
             this.btnAdjuntar.Name = "btnAdjuntar";
-            this.btnAdjuntar.Size = new System.Drawing.Size(54, 23);
-            this.btnAdjuntar.TabIndex = 4;
+            this.btnAdjuntar.Size = new System.Drawing.Size(173, 29);
+            this.btnAdjuntar.TabIndex = 3;
             this.btnAdjuntar.Text = "Adjuntar";
             this.btnAdjuntar.UseVisualStyleBackColor = true;
             this.btnAdjuntar.Click += new System.EventHandler(this.btnAdjuntar_Click);
             // 
-            // txtBuscar
+            // openFileDialog1
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(11, 40);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(78, 20);
-            this.txtBuscar.TabIndex = 5;
+            this.openFileDialog1.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.gif|Todos los archivos|*.*";
             // 
-            // btnBuscar
+            // dtgChats
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(95, 38);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 6;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.dtgChats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgChats.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgChats.Location = new System.Drawing.Point(3, 3);
+            this.dtgChats.Name = "dtgChats";
+            this.dtgChats.ReadOnly = true;
+            this.dtgChats.Size = new System.Drawing.Size(173, 243);
+            this.dtgChats.TabIndex = 0;
+            this.dtgChats.SelectionChanged += new System.EventHandler(this.dtgChats_SelectionChanged);
             // 
-            // txtBoxNuevoChat
+            // btnVolver
             // 
-            this.txtBoxNuevoChat.Location = new System.Drawing.Point(177, 11);
-            this.txtBoxNuevoChat.Name = "txtBoxNuevoChat";
-            this.txtBoxNuevoChat.Size = new System.Drawing.Size(319, 20);
-            this.txtBoxNuevoChat.TabIndex = 9;
+            this.btnVolver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVolver.Location = new System.Drawing.Point(3, 322);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(173, 32);
+            this.btnVolver.TabIndex = 4;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // btnCrearChat
+            // btnEnviar
             // 
-            this.btnCrearChat.Location = new System.Drawing.Point(502, 8);
-            this.btnCrearChat.Name = "btnCrearChat";
-            this.btnCrearChat.Size = new System.Drawing.Size(75, 23);
-            this.btnCrearChat.TabIndex = 10;
-            this.btnCrearChat.Text = "Crear Chat";
-            this.btnCrearChat.UseVisualStyleBackColor = true;
-            this.btnCrearChat.Click += new System.EventHandler(this.btnCrearChat_Click_1);
+            this.btnEnviar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEnviar.Location = new System.Drawing.Point(182, 287);
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.Size = new System.Drawing.Size(413, 29);
+            this.btnEnviar.TabIndex = 5;
+            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click_1);
+            // 
+            // CargarChat
+            // 
+            this.CargarChat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CargarChat.Location = new System.Drawing.Point(3, 287);
+            this.CargarChat.Name = "CargarChat";
+            this.CargarChat.Size = new System.Drawing.Size(173, 29);
+            this.CargarChat.TabIndex = 6;
+            this.CargarChat.Text = "Cargar Chat";
+            this.CargarChat.UseVisualStyleBackColor = true;
+            this.CargarChat.Click += new System.EventHandler(this.CargarChat_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.Controls.Add(this.dtgChats, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rtbMensajes, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtMensaje, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnEnviar, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnAdjuntar, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.CargarChat, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnVolver, 0, 3);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(598, 357);
+            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // ChatForm
             // 
             this.ClientSize = new System.Drawing.Size(598, 357);
-            this.Controls.Add(this.btnCrearChat);
-            this.Controls.Add(this.txtBoxNuevoChat);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnAdjuntar);
-            this.Controls.Add(this.btnEnviar);
-            this.Controls.Add(this.txtMensaje);
-            this.Controls.Add(this.rtbMensajes);
-            this.Controls.Add(this.lstChats);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ChatForm";
             this.Text = "Chat";
+            ((System.ComponentModel.ISupportInitialize)(this.dtgChats)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
-        private System.Windows.Forms.ListBox lstChats;
         private System.Windows.Forms.RichTextBox rtbMensajes;
         private System.Windows.Forms.TextBox txtMensaje;
-        private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.Button btnAdjuntar;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox txtBuscar;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtBoxNuevoChat;
-        private System.Windows.Forms.Button btnCrearChat;
+        private System.Windows.Forms.DataGridView dtgChats;
+        private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnEnviar;
+        private System.Windows.Forms.Button CargarChat;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+
+        
     }
 }

@@ -22,11 +22,11 @@ namespace DAL
         {
             using (var connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO grupo (id_grupo, nombre, contenido_publico, comentarios, fecha_creacion) VALUES (@idGrupo, @nombre, @contenidoPublico, @comentarios, @fechaCreacion)";
+                string query = "INSERT INTO grupo (id_grupo, nombre, texto_publico, comentarios, fecha_creacion) VALUES (@idGrupo, @nombre, @textoPublico, @comentarios, @fechaCreacion)";
                 var command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@idGrupo", grupo.IdGrupo);
                 command.Parameters.AddWithValue("@nombre", grupo.Nombre);
-                command.Parameters.AddWithValue("@contenidoPublico", grupo.ContenidoPublico);
+                command.Parameters.AddWithValue("@textoPublico", grupo.textoPublico);
                 command.Parameters.AddWithValue("@comentarios", grupo.Comentarios);
                 command.Parameters.AddWithValue("@fechaCreacion", grupo.FechaCreacion);
 
@@ -68,7 +68,7 @@ namespace DAL
                         {
                             IdGrupo = reader.GetInt32("id_grupo"),
                             Nombre = reader.GetString("nombre"),
-                            ContenidoPublico = reader.GetBoolean("contenido_publico"),
+                            textoPublico = reader.GetBoolean("texto_publico"),
                             Comentarios = reader.GetString("comentarios"),
                             FechaCreacion = reader.GetDateTime("fecha_creacion")
                         };

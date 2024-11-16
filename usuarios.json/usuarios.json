@@ -1,0 +1,50 @@
+[
+  {
+    "IdPerfil": 1,
+    "Nombre": "Matias",
+    "Apellido": "Rodriguez",
+    "Correo": "mati@gmail.com"
+  },
+  {
+    "IdPerfil": 2,
+    "Nombre": "Facundo",
+    "Apellido": "Núñez",
+    "Correo": "facundoi@gmail.com"
+  },
+  {
+    "IdPerfil": 3,
+    "Nombre": "Joaquin",
+    "Apellido": "Royes",
+    "Correo": "joaquinroyes@gmail.com"
+  },
+  {
+    "IdPerfil": 4,
+    "Nombre": "Facundo",
+    "Apellido": "Núñez",
+    "Correo": "facundonuñez@gmail.com"
+  },
+  {
+    "IdPerfil": 5,
+    "Nombre": "Darien",
+    "Apellido": "Ramirez",
+    "Correo": "darien"
+  },
+  {
+    "IdPerfil": 6,
+    "Nombre": "darien",
+    "Apellido": "ramirez",
+    "Correo": "darien@gmail.com"
+  },
+  {
+    "IdPerfil": 7,
+    "Nombre": "Agustín",
+    "Apellido": "Rodríguez",
+    "Correo": "AgusPirata@gmail.com"
+  },
+  {
+    "IdPerfil": 8,
+    "Nombre": "Ivana",
+    "Apellido": "Serguita",
+    "Correo": "IvanaSerguita@gmail.com"
+  }
+]

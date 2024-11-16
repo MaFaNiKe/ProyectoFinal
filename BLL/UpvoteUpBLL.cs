@@ -25,7 +25,8 @@ namespace BLL
 
         public List<UpvoteUp> ObtenerUpvotesPorPost(int idPost)
         {
-            return upvoteUpDAL.ObtenerUpvotesPorPost(idPost);
+            var upvoteUpDAL = new UpvoteUpDAL();
+            return upvoteUpDAL.ObtenerUpvotesPorIdPost(idPost);
         }
     }
 }

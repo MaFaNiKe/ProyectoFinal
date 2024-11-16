@@ -12,13 +12,15 @@ namespace UltimoAliento
 
         private void NotificacionesForm_Load(object sender, EventArgs e)
         {
-            
-            // CargarNotificaciones();
         }
 
         private void CargarNotificaciones()
         {
-            // Cargar notificaciones en un futuro
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {           
+            this.Hide();
         }
     }
 }

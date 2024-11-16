@@ -1,0 +1,18 @@
+[
+  {
+    "IdPost": 21,
+    "IdPerfil": 1,
+    "NombreUsuario": null,
+    "Texto": "Esto ser\u00E1 posible que guarde en Json este post? ",
+    "Fecha": "2024-11-14T17:37:14.1000739-03:00",
+    "Likes": 0,
+    "textoImagen": null,
+    "textoLink": null,
+    "LikesUsuarios": [],
+    "Usuario": null,
+    "PostImagens": [],
+    "PostLinks": [],
+    "Upvotes": [],
+    "Eventos": []
+  }
+]

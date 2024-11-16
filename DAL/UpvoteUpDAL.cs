@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
-using System.Configuration;
 using Entidades;
+using System.Configuration;
 
 namespace DAL
 {
@@ -12,7 +12,6 @@ namespace DAL
 
         public UpvoteUpDAL()
         {
-            // cadena de conexión desde App.config
             connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
 
@@ -46,10 +45,9 @@ namespace DAL
             }
         }
 
-        public List<UpvoteUp> ObtenerUpvotesPorPost(int idPost)
+        public List<UpvoteUp> ObtenerUpvotesPorIdPost(int idPost)
         {
             var upvotes = new List<UpvoteUp>();
-
             using (var connection = new MySqlConnection(connectionString))
             {
                 var query = "SELECT * FROM upvote_up WHERE id_post = @IdPost";
@@ -70,7 +68,6 @@ namespace DAL
                     }
                 }
             }
-
             return upvotes;
         }
     }

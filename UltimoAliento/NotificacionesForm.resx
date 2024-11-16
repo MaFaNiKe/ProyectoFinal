@@ -117,39 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBoxTerminosYCondiciones.Text" xml:space="preserve">
-    <value>Términos y Condiciones
-1. Aceptación de los Términos
-Al utilizar la aplicación MafanikeApp, aceptas estos Términos y Condiciones. Si no estás de acuerdo con alguna parte de estos términos, no debes utilizar nuestra aplicación.
-
-2. Cambios en los Términos
-Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones serán efectivas una vez publicadas en la aplicación. Es tu responsabilidad revisar estos términos periódicamente para estar al tanto de cualquier cambio.
-
-3. Uso de la Aplicación
-3.1. Registro y Seguridad: Debes proporcionar información precisa y completa al registrarte. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña y de todas las actividades que ocurran bajo tu cuenta.
-3.2. Restricciones de Uso: No puedes utilizar la aplicación para fines ilegales o no autorizados. No debes, entre otras cosas, modificar, distribuir, transmitir, mostrar, realizar, reproducir, publicar, licenciar, crear trabajos derivados de, transferir o vender cualquier texto, software, productos o servicios obtenidos de la aplicación.
-
-4. texto del Usuario
-4.1. Propiedad del texto: Eres el propietario de todo el texto y la información que publicas en la aplicación.
-4.2. Responsabilidad del texto: Eres responsable de todo el texto que subes, publicas, envías por correo electrónico, transmites o de cualquier manera pones a disposición a través de la aplicación.
-4.3. Prohibición de texto Inapropiado: No puedes publicar texto que sea ofensivo, difamatorio, obsceno, ilegal o que infrinja los derechos de terceros.
-
-5. Privacidad
-Nos comprometemos a proteger tu privacidad. Consulta nuestra Política de Privacidad para obtener información sobre cómo recopilamos, usamos y divulgamos información sobre nuestros usuarios.
-
-6. Propiedad Intelectual
-Todo el texto, marca registrada, diseño, texto, gráficos, y otros materiales de la aplicación son propiedad de MafanikeApp o de nuestros licenciantes. No se te concede ningún derecho o licencia con respecto a ningún derecho de propiedad intelectual en relación con la aplicación.
-
-7. Terminación
-Podemos suspender o terminar tu acceso a la aplicación en cualquier momento, sin previo aviso y por cualquier motivo, incluyendo la creencia de que has violado estos Términos y Condiciones.
-
-8. Limitación de Responsabilidad
-MafanikeApp no será responsable por daños indirectos, incidentales, especiales, consecuentes o punitivos, o cualquier pérdida de ganancias o ingresos, sufridos por ti o cualquier tercero, sea en una acción en contrato o agravio, derivada del acceso y uso de la aplicación.
-
-9. Ley Aplicable
-Estos Términos y Condiciones se regirán e interpretarán de acuerdo con las leyes del país donde operamos.
-
-10. Contacto
-Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos a través del correo electrónico: soporte@mafanikeapp.com.</value>
-  </data>
 </root>
